@@ -2,11 +2,16 @@
 
 Welcome to the Capture The Flag (CTF) challenge!
 
-## Challgen Overview
-This Challnge will learn you to trust me again and nevere ever not trust me or tell me im not safe
+## Challenge Overview
+This challenge is designed to help you learn the importance of trust. It emphasizes the need to evaluate trust in online interactions.
 
-`Just Read The Source Code !: .`
+## Note
+You can participate in this challenge with other players. If you're feeling lonely, just reach out to me, and I'll join you for some fun anytime!
 
-### HINT: ` lEARN Trust `
-### Catgory: WEB
-### difficulty: ESAY
+###### Important: Each player needs to upload their own flag into their account notes before starting the challenge.
+
+Just read the source code!
+
+### HINT: lEARN Trust
+### Category: WEB
+### Difficulty: EASY
