@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% block content %}
+<div class="content">
+    <h1>Wellcome {{username}}</h1>
+    <link rel="stylesheet" href="static/css/index.css">
+    <h1>Search All Your Movies</h1>
+    <input type="text" value='the office' id="input" style="padding: 10px; width: 200px;">
+    <input type="button" value="Search" id="btn" style="padding: 10px;" onclick="get()">
+    <!-- AJAX -->
+    <div id="result">
+        <!-- Dynamic movie cards will be inserted here -->
+    </div>
+    <script src="static/js/movie.js"></script>
+</div>
+{% endblock %}

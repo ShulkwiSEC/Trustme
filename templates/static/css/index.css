@@ -1,0 +1,46 @@
+.content {
+    padding: 20px;
+    margin: 50px;
+}
+
+#result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-project {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.card_Movie {
+    width: auto;
+    box-shadow: 0 0 0 1px rgba(1 1 1 / 15%);
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.info_Movie {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    align-items: center;
+    flex-direction: row-reverse;
+    font-weight: 600;
+    font-size: 20px;
+}
+.info_Movie strong{
+    /* font-size: 30px; */
+    font-weight: 900;
+}
+.info_Movie span{
+    background-color: #3f3f3f59;
+    padding: 5px;
+}
+.info_Movie option{
+    background-color: #3f3f3f59;
+}

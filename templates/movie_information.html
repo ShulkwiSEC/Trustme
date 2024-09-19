@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Movies Information{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="static/css/movie_information.css">
+
+<div class="search">
+    <input type="text" id="search" onkeyup="Search()" placeholder="Search ...! e.g Comdy, e.g BadBoys">
+</div>
+<div class="container">
+    <h1>Welcome</h1>
+    <span onreadystatechange="alert('XSS')">Now you can see all the movies we have:</span>
+    <div class="Cards">
+        {% for movie in movies %}
+        <div class="cardi" data-title="{{ movie['title']|safe }}" data-genres="{{ movie['genres'] }}">
+            <div class="cardInfo">
+                <div><strong>Title:</strong> <span>{{ movie['title']}}</span></div>
+                <div><strong>Year:</strong> <span>{{ movie['year'] }}</span></div>
+                <div><strong>Episodes:</strong> <span>{{ movie['episodes'] }}</span></div>
+                <div><strong>Genres:</strong> <span>{{ movie['genres'] }}</span></div>
+                <div><strong>Writer(s):</strong> <span>{{ movie['writers'] }}</span></div>
+                <div><strong>Rating:</strong> <span>{{ movie['rating'] }}</span></div>
+                <div><strong>Votes:</strong> <span>{{ movie['votes'] }}</span></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+     <!-- Not Found Message -->
+      <div id="gotop" onclick="gotop()">🔼</div>
+     <div id="notFoundMessage" style="display:none; color:red; font-weight:bold;">Not Found</div>
+</div>
+<script src="static/js/movie.js"></script>
+<script>
+    window.onscroll = hideOrShow;
+</script>
+{% endblock %}

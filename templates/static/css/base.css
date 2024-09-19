@@ -1,0 +1,50 @@
+.base *{
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    font-family: monospace;
+    font-weight: 500;
+    /* padding: 5px; */
+}
+
+.base .navbar {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 10px;
+    align-items: center;
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    opacity: 0.;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 15px 30px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.base .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 20px 10px;
+    transition: background-color 0.3s;
+}
+
+.base .navbar a:hover {
+    background: linear-gradient(145deg, #0056b3, #007bff);
+}
+.base .output{
+    padding: 10px;
+    font: 800;
+    font-family: monospace;
+    margin-top: 10px;
+}
+.base #output{
+    padding: 10px;
+    font: 800;
+    font-family: monospace;
+    margin-top: 10px;
+}
+.base .xcontainer{
+    margin-top: 100px;
+}

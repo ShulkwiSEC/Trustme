@@ -1,0 +1,117 @@
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&display=swap');
+    .container {
+        width: 80%;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0 5px 20px;
+        background: #fff;
+        margin: 10px auto;
+    }
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .section {
+        margin-bottom: 10px;
+    }
+    .section header {
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        background: #e0e0e0;
+        padding: 8px;
+        border-radius: 6px;
+        transition: background 0.3s;
+    }
+    .section header:hover {
+        background: #d0d0d0;
+    }
+    .section .content {
+        display: none;
+        padding: 8px;
+    }
+    .section .content.active {
+        display: block;
+    }
+    form label {
+        color: #1d1d1d;
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 8px;
+        display: block;
+    }
+    .custome-input {
+        margin-top: 4px;
+    }
+    .custome-input input {
+        color: #1d1d1d;
+        font-size: 20px;
+        font-weight: 500;
+        width: 100%;
+        height: 20px;
+        border: 1px solid #1d1d1d;
+        border-radius: 6px;
+        text-indent: 15px;
+        outline: none;
+        transition: border-color 0.3s;
+        padding: 10px;
+    }
+    .custome-input input:focus {
+        border-color: #5222fd;
+    }
+    .login {
+        width: 100%;
+        margin-top: 20px;
+        background: #6b43ff;
+        color: #fff;
+        border: none;
+        line-height: 40px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 700;
+        border-radius: 6px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transition: background 0.3s;
+    }
+    .login:hover:not(:disabled) {
+        background: #5222fd;
+    }
+    .login-message {
+        color: #d9534f;
+        font-size: 12px;
+        margin-top: 8px;
+        text-align: center;
+        display: none;
+    }
+    .links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .links a {
+        color: #6b43ff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        text-underline-offset: 6px;
+        text-decoration-color: #6b43ff;
+    }
+    .links a:hover {
+        text-decoration: underline;
+    }
+    #outputDiv {
+        display: none;
+        padding: 8px;
+        background: #33333326;
+        margin-bottom: 8px;
+        margin-right: 8px;
+    }
+    #output {
+        color: #000;
+        font-size: 18px;
+        font-weight: 800;
+    }
+    #episodes {
+        padding: 4px;
+    }

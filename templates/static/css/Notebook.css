@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+body {
+  font-family: "Tajawal", sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  height: 100vh; /* Changed to 100vh for full height */
+}
+
+.container {
+  width: 100%;
+  max-width: 800px; /* Set max-width for better responsiveness */
+  margin: auto;
+  padding: 20px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.note {
+  background: #fff;
+  box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Set width to 100% */
+  padding: 20px;
+  border-radius: 20px;
+}
+
+h1, h2 {
+  color: #333;
+  text-align: center;
+  font-weight: 900;
+  font-size: larger;
+  margin: 0; /* Removed padding for better spacing */
+  padding: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 100%; /* Set width to 100% */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #252525;
+  font-weight: 900;
+  font-size: larger;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 15px; /* Adjusted padding for consistency */
+  margin: 5px 0 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  display: inline-block;
+  padding: 20px 30px;
+  font-size: 30px; /* Adjusted font-size */
+  border: none;
+  background: linear-gradient(45deg, #1832de, #4a54f1);
+  color: white;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  width: 200px;
+  height: 50px;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #4a54f1, #1832de);
+  transform: translateY(-3px);
+}
+
+button:active {
+  background: linear-gradient(45deg, #1832de, #4a54f1);
+  transform: translateY(1px);
+}
+
+#comments {
+  margin-top: 30px;
+}
+
+.comment {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.comment h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.comment p {
+  margin: 0;
+  color: #555;
+}
+
+.outputdiv{
+    padding: 10px;
+    background-color: #1818186e;
+    font-family: monospace;
+    text-align: center;
+}
+.Noteee{
+    color: #0044ff;
+    font-weight: 600;
+    padding: 5px;
+}
+
+#output{
+   color: red;
+   font-weight: 600;
+   padding: 5px;
+}
+
+.outputGoodNews{
+    color: greenyellow;
+    font-weight: 900;
+    padding: 5px;
+}
+.outputGoodNews code{
+    color: white;
+    padding: 10px;
+    background-color: #000;
+    display: inline-block;
+    margin: 10px;
+}

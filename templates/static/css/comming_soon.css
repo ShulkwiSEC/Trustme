@@ -1,0 +1,76 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    animation: fadeIn 1.1s ease-in-out;
+    margin-top: 50px;
+  }
+  
+  .card {
+    background: linear-gradient(145deg, #ffffff, #e0e5ec);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    text-align: center;
+    width: 320px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 15px 30px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(145deg, #e0e5ec, #ffffff);
+  }
+  
+  .card h2 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .card p {
+    margin-bottom: 25px;
+    font-size: 1rem;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+  }
+  
+  .btn:hover {
+    background: linear-gradient(145deg, #0056b3, #007bff);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 123, 255, 0.4);
+  }
+  
+  @media (max-width: 600px) {
+    .card {
+        width: 90%;
+    }
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }

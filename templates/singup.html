@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%block title%}Login{%endblock%}
+{%block content%}
+<div class="container">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="static/css/login.css">
+    <h1>You Wellcome At Your Home 👏</h1>
+    <h1>Singup Now 👏</h1>
+    <form action="/singup" id="addMemberForm" method="post">
+        <label for="Companyemil">Email</label>
+        <div class="custome-input">
+            <input type="text" name="username" placeholder="Ahmed" required>
+        </div>
+        <label for="Companypassword">Password</label>
+        <div class="custome-input">
+            <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="custome-input">
+            <input type="submit" value="Singup">
+        </div>
+        <span>Allready Have Account !<a href="/login">Login now</a></span>
+    </form>
+    {%if msg%}
+    <div class="Out">
+    <span id="output" style="">{{msg}}</span>
+    </div>
+    {%endif%}
+</div>
+{%endblock%}

@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&display=swap');
+
+.container {
+    width: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: #fff;
+    position: relative;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.section header:hover {
+    background-color: #d0d0d0;
+}
+
+.section .content {
+    display: none;
+    padding: 10px;
+}
+
+.section .content.active {
+    display: block;
+}
+
+form label {
+    color: #1d1d1d;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.03rem;
+    display: block;
+    margin-top: 12px;
+}
+
+.custome-input {
+    position: relative;
+    margin-top: 6px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.custome-input input {
+    color: #1d1d1d;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    height: 46px;
+    letter-spacing: 0.03rem;
+    border: 1px solid #1d1d1d;
+    background: transparent;
+    outline: none;
+    border-radius: 8px;
+    text-indent: 20px;
+    transition: all 0.3s ease;
+}
+
+.custome-input input:focus {
+    border-color: #5222fd;
+}
+
+.login {
+    width: 100%;
+    margin-top: 30px;
+    background: #6b43ff;
+    color: #fff;
+    border: none;
+    line-height: 50px;
+    font-size: 18px;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    font-weight: 800;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.login:disabled {
+    background: #b3a9ff;
+    cursor: not-allowed;
+}
+
+.login:hover:not(:disabled) {
+    background: #5222fd;
+}
+
+.login-message {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.links a {
+    color: #6b43ff;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    text-underline-offset: 6px;
+    text-decoration-color: #6b43ff;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+#outputDiv{
+    display: none;
+    padding: 10px;
+    background-color: #33333326;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+#output{
+    color: #ff0000;
+    font-size: 20px;
+    font: bolder;
+    font-weight: 800;
+    padding: 10px;
+}
+input[type=submit] {
+    background-color: #6c43ffd7;
+    color: white;
+    cursor: pointer;
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 5px;
+    margin-top: 10px;
+}
+input[type=submit]:hover{
+    background-color: #111016d7;
+    transform: scale(1.1);
+}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Add Movie{% endblock %}
+{% block content %}
+<div class="container">
+    <link rel="stylesheet" href="static/css/NewMovie.css">
+    <h1>It's nice that you're here 👏</h1>
+    <div class="section">
+        <form id="addMemberForm">
+            <label>Title</label>
+            <div class="custome-input"><input type="text" id="title" required></div>
+            <label>Year</label>
+            <div class="custome-input"><input type="number" id="year" required></div>
+            <label>Votes</label>
+            <div class="custome-input"><input type="number" id="vots" required></div>
+            <label>Genres</label>
+            <div class="custome-input"><input type="text" id="genres" required></div>
+            <label>Rating</label>
+            <div class="custome-input"><input type="number" id="rating" required></div>
+            <label>Episodes</label>
+            <div class="custome-input"><input type="number" id="episodes" value="1"></div>
+            <button type="button" class="login" id="addMemberButton" onclick="post()">Add Movie</button>
+        </form>
+        <span id="output" style="margin-top: 10px; padding: 5px;"></span>
+    </div>
+    <script src="static/js/movie.js"></script>
+</div>
+{% endblock %}
