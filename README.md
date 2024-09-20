@@ -8,7 +8,7 @@ This challenge is designed to help you understand the importance of trust, empha
 ## Note
 Feel free to collaborate with other players. If you're feeling lonely, just reach out to me, and I'll join you for some fun anytime!
 
-**Important:** Each player must upload their own flag into their account notes before starting the challenge.
+**Important:** `Each player must upload their own flag into their account notes before starting the challenge.`
 
 Just read the source code!
 
