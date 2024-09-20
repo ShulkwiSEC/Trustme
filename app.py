@@ -303,7 +303,7 @@ def init_userdb(db):
                 FOREIGN KEY(user_id) REFERENCES users(id)
             );
         """
-        with sqlite3.connect(db) as con:
+        with sqlite3.connect(userdb) as con:
             cur = con.cursor()
             cur.executescript(query)
         return True
