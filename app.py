@@ -449,7 +449,7 @@ def main():
         if not init_userdb(db=userdb):
             exit(1)
         url = "https://raw.githubusercontent.com/cs50/lectures/refs/heads/2022/fall/7/src7/imdb/shows.db"
-        if download_shows_db(url,db) != 0:
+        if download_shows_db(url,dbs_path) != 0:
             exit(1)
         app.run()
 main()
