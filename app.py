@@ -313,8 +313,7 @@ def init_userdb(db):
 
 def download_shows_db(url, save_path):
     try:
-        os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        command = f"curl {url} -o {save_path}"
+        command = f"mkdir ./Datebases && curl {url} -o ./Datebases/shows.db"
         result = subprocess.run(command, shell=True)
         if result.returncode == 0:
             print(f"Downloaded shows.db to {save_path}")
