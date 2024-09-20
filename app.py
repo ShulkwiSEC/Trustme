@@ -311,39 +311,6 @@ def init_userdb(db):
         print(f"Error initializing user database: {e}")
         return False
 
-def download_shows_db(url, save_path):
-    try:
-        os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        command = f"curl {url} -o {save_path}"
-        result = subprocess.run(command, shell=True)
-        if result.returncode == 0:
-            print(f"Downloaded shows.db to {save_path}")
-            con = sqlite3.connect(db)
-            cur = con.cursor()
-            cur.execute("CREATE INDEX idx_shows_title ON shows(title);")
-            cur.execute("CREATE INDEX idx_genras_genra ON genres(genre);")
-            con.commit()
-            return 0
-        else:
-            print("Download failed")
-            return 1
-    except Exception as error:
-        print(f"ERROR while downloading shows.db {error}")
-
-
-def clear_all_debugging_files():
-    try:
-        if os.path.exists(dbs_path):
-            shutil.rmtree(dbs_path)
-        if os.path.exists(sessionfile):
-            shutil.rmtree(sessionfile)
-
-        os.makedirs(dbs_path)
-        return 0
-    except Exception as error:
-        print(f'ERROR: While removing debugging files: {error}')
-        return 1
-
 # Routes
 @app.route('/')
 def index():
@@ -442,14 +409,10 @@ def note():
 api.add_resource(Moive,'/api/movie/<string:title>')
 api.add_resource(Notes,'/api/v1/notes/')
 
+
 def main():
     if __name__ == '__main__':
-        if clear_all_debugging_files() != 0:
-            exit(1)
         if not init_userdb(db=userdb):
-            exit(1)
-        url = "https://raw.githubusercontent.com/cs50/lectures/refs/heads/2022/fall/7/src7/imdb/shows.db"
-        if download_shows_db(url,dbs_path) != 0:
             exit(1)
         app.run()
 main()
