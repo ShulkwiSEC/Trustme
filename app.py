@@ -389,7 +389,7 @@ def main():
     if __name__ == '__main__':
         if not UserManager.init_userdb():
             exit(1)
-        app.run()
+        app.run(host='0.0.0.0',port=80)
 
 
 main()
