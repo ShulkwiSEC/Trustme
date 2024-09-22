@@ -87,12 +87,13 @@ class UserManager:
             con.close()
 
 # APIs Endpoints
+
 class Moive(Resource):
     def get(self,title):
         title = decode(title)
         p = reqparse.RequestParser()
         try:
-            con = sqlite3.connect(db)
+            con = sqlite3.connect(show_db)
             cur = con.cursor()
             qeruy = "SELECT title,year,episodes,genre,rating,votes FROM (SELECT * FROM shows AS s INNER JOIN genres AS g ON s.id = g.show_id INNER JOIN ratings AS r ON r.show_id = s.id) WHERE title LIKE ?"
             rows = cur.execute(qeruy,[f"%{title}%",]).fetchall()
@@ -126,7 +127,7 @@ class Moive(Resource):
         InsertINtoGenre = 'INSERT INTO genres(show_id,genre) VALUES(?,?);'
         InsertINtoRatings = 'INSERT INTO ratings(show_id,rating,votes) VALUES(?,?,?);'
         try:
-            con = sqlite3.connect(db)
+            con = sqlite3.connect(show_db)
             cur = con.cursor()
             cur.execute(InsertINtoSHOWS,[title,year,episodes])
             con.commit()
@@ -147,7 +148,7 @@ class Moive(Resource):
             p.add_argument('rating',type=float, help='rating is required',required=True)
             args = p.parse_args()
             rating = args['rating']
-            con = sqlite3.connect(db)
+            con = sqlite3.connect(show_db)
             cur = con.cursor()
             show_id = cur.execute('SELECT id FROM shows WHERE title = ?',[title,]).fetchone()
             if show_id != None:
@@ -165,7 +166,7 @@ class Moive(Resource):
         title = decode(title)
         p = reqparse.RequestParser()
         try:
-            con = sqlite3.connect(db)
+            con = sqlite3.connect(show_db)
             cur = con.cursor()
             testingIftitleFound = cur.execute('SELECT id FROM shows WHERE title = ?',[title,]).fetchone()
             print(testingIftitleFound)
@@ -399,7 +400,7 @@ def logout():
         return '<h1>Please sign up and log in first.</h1>'
 
 
-api.add_resource(Movie, '/api/movie/<string:title>')
+api.add_resource(Moive, '/api/movie/<string:title>')
 api.add_resource(Notes, '/api/v1/notes/')
 
 
