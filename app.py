@@ -22,8 +22,8 @@ Session(app)
 class UserManager:
     @staticmethod
     def init_userdb():
-        if os.path.exists(userdb):
-            os.remove(userdb)
+        # if os.path.exists(userdb):
+        #     os.remove(userdb)
         try:
             query = """
                 DROP TABLE IF EXISTS users;
