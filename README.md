@@ -28,6 +28,6 @@ $ python3 -m pip install -r requirements.txt
 $ python3 app.py
 ```
 ### Online
-If you prefer an online deployment, you can access it at: ``` https://trustme-b1pw.onrender.com ```
+If you prefer an online deployment, you can access it at: ``` https://trustme-fejp.onrender.com/ ```
 
 Feel free to let me know if you need further adjustments and explaining !
