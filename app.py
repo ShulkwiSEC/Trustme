@@ -288,6 +288,16 @@ def logedin():
 
 
 def init_userdb(db):
+    """
+    Initializes the user database by creating necessary tables.
+    If the database file already exists, it will be removed.
+    
+    Parameters:
+        db_path (str): The path to the database file.
+    
+    Returns:
+        bool: True if initialization was successful, False otherwise.
+    """
     if os.path.exists(userdb):
         os.remove(userdb)
     try:
@@ -306,12 +316,16 @@ def init_userdb(db):
         with sqlite3.connect(userdb) as con:
             cur = con.cursor()
             cur.executescript(query)
-        return True
+            con.commit()
+        if os.path.exists(userdb):
+            print(f"Database file created at: {userdb}")
+            return True
+        else:
+            print(f"Database file not created at: {userdb}")
+            return False
     except Exception as e:
         print(f"Error initializing user database: {e}")
         return False
-    finally:
-        con.commit()
 
 # Routes
 @app.route('/')
@@ -364,7 +378,7 @@ def singup():
 @app.route('/singin',methods=['GET','POST'])
 def singin():
     if request.method == 'POST':
-        if session['username']:
+        if logedin():
             session.clear()
         username = request.form.get('username')
         password = request.form.get('password')
