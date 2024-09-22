@@ -86,107 +86,103 @@ class UserManager:
         finally:
             con.close()
 
-
-# Show Management Class
-class ShowManager:
-    @staticmethod
-    def get_movie(title):
+# APIs Endpoints
+class Moive(Resource):
+    def get(self,title):
         title = decode(title)
-        try:
-            con = sqlite3.connect(show_db)
-            cur = con.cursor()
-            query = """
-                SELECT title, year, episodes, GROUP_CONCAT(genre, ', ') AS genres, rating, votes
-                FROM shows
-                JOIN genres ON shows.id = genres.show_id
-                JOIN ratings ON ratings.show_id = shows.id
-                WHERE title LIKE ?
-            """
-            rows = cur.execute(query, [f"%{title}%"]).fetchall()
-            if rows:
-                return {'message': list(rows[0])}, 200
-            else:
-                return {'message': 'Movie Not Found'}, 404
-        except Exception as error:
-            return {'message': f'Something Went Wrong: {error}'}, 500
-
-    @staticmethod
-    def add_movie(data):
-        try:
-            con = sqlite3.connect(show_db)
-            cur = con.cursor()
-            InsertINtoSHOWS = 'INSERT INTO shows(title, year, episodes) VALUES(?, ?, ?);'
-            cur.execute(InsertINtoSHOWS, (data['title'], data['year'], data['episodes']))
-            con.commit()
-            show_id = cur.execute('SELECT id FROM shows WHERE title = ?', [data['title']]).fetchone()[0]
-            for genre in data['genres']:
-                cur.execute('INSERT INTO genres(show_id, genre) VALUES(?, ?);', (show_id, genre))
-            cur.execute('INSERT INTO ratings(show_id, rating, votes) VALUES(?, ?, ?);', (show_id, data['rating'], data['votes']))
-            con.commit()
-            return {'message': f'Movie {data["title"]} inserted successfully'}, 201
-        except Exception as error:
-            return {'message': f'Something Went Wrong: {error}'}, 500
-
-    @staticmethod
-    def update_rating(title, rating):
-        title = decode(title)
-        try:
-            con = sqlite3.connect(show_db)
-            cur = con.cursor()
-            show_id = cur.execute('SELECT id FROM shows WHERE title = ?', [title]).fetchone()
-            if show_id:
-                cur.execute('UPDATE ratings SET rating = ? WHERE show_id = ?', (rating, show_id[0]))
-                con.commit()
-                return {'message': f'Movie {title} rating updated successfully'}, 200
-            else:
-                return {'message': 'Movie Not Found'}, 404
-        except Exception as error:
-            return {'message': f'Something Went Wrong: {error}'}, 500
-
-    @staticmethod
-    def delete_movie(title):
-        title = decode(title)
-        try:
-            con = sqlite3.connect(show_db)
-            cur = con.cursor()
-            show_id = cur.execute('SELECT id FROM shows WHERE title = ?', [title]).fetchone()
-            if show_id:
-                cur.execute('DELETE FROM shows WHERE title = ?', [title])
-                cur.execute('DELETE FROM genres WHERE show_id = ?', [show_id[0]])
-                cur.execute('DELETE FROM ratings WHERE show_id = ?', [show_id[0]])
-                con.commit()
-                return {'message': f'Movie {title} deleted successfully'}, 200
-            else:
-                return {'message': 'Movie Not Found'}, 404
-        except Exception as error:
-            return {'message': f'Something Went Wrong: {error}'}, 500
-
-
-# API Endpoints
-class Movie(Resource):
-    def get(self, title):
-        return ShowManager.get_movie(title)
-
-    def post(self, title):
         p = reqparse.RequestParser()
-        p.add_argument('year', type=str, required=True)
-        p.add_argument('episodes', type=int, default=1)
-        p.add_argument('genre', type=str, action='append', required=True)
-        p.add_argument('rating', type=float, required=True)
-        p.add_argument('votes', type=int, required=True)
-        args = p.parse_args()
-        return ShowManager.add_movie({**args, 'title': title})
-
-    def put(self, title):
+        try:
+            con = sqlite3.connect(db)
+            cur = con.cursor()
+            qeruy = "SELECT title,year,episodes,genre,rating,votes FROM (SELECT * FROM shows AS s INNER JOIN genres AS g ON s.id = g.show_id INNER JOIN ratings AS r ON r.show_id = s.id) WHERE title LIKE ?"
+            rows = cur.execute(qeruy,[f"%{title}%",]).fetchall()
+            if rows != []:
+                data = list(rows[0])
+                data[3] = ''
+                for row in rows:
+                    data[3] += row[3]+','
+                data[3] = data[3][:-1]
+                con.commit()
+                return {'massage': data},200
+            else:
+                return {'massage': 'Moive Not Found'},404
+        except Exception as error:
+            return {'massage': f'Something Went Wrong {error}'},500
+    def post(self,title):
+        title = decode(title)
         p = reqparse.RequestParser()
-        p.add_argument('rating', type=float, required=True)
+        p.add_argument('year', type=str, help='year is required',required=True)
+        p.add_argument('episodes',type=int, help='episodes ',required=False,default=1)
+        p.add_argument('genre',type=str, help='genre is required',action='append',required=True)
+        p.add_argument('rating',type=float, help='rating is required',required=True)
+        p.add_argument('votes',type=int, help='votes is required',required=True)
         args = p.parse_args()
-        return ShowManager.update_rating(title, args['rating'])
+        year = args['year']
+        episodes = args['episodes']
+        genres = args['genre']
+        rating = args['rating']
+        votes = args['votes']
+        InsertINtoSHOWS = 'INSERT INTO shows(title,year,episodes) VALUES(?,?,?);'
+        InsertINtoGenre = 'INSERT INTO genres(show_id,genre) VALUES(?,?);'
+        InsertINtoRatings = 'INSERT INTO ratings(show_id,rating,votes) VALUES(?,?,?);'
+        try:
+            con = sqlite3.connect(db)
+            cur = con.cursor()
+            cur.execute(InsertINtoSHOWS,[title,year,episodes])
+            con.commit()
+            show_id = cur.execute('SELECT id FROM shows WHERE title = ?',[title,]).fetchone()[0]
+            for genre in genres:
+                cur.execute(InsertINtoGenre,[show_id,genre])
+            cur.execute(InsertINtoRatings,[show_id,rating,votes])
+            con.commit()
+            return {'massage':f'Movie {title}: {args} Inserted Susccfly'},201
+        except Exception as error:
+            return {'massage': f'Something Went Wrong {error}'},500
 
-    def delete(self, title):
-        return ShowManager.delete_movie(title)
+    def put(self,title):
+        title = decode(title)
+        try:
+            p = reqparse.RequestParser()
+            print('PUTTTT')
+            p.add_argument('rating',type=float, help='rating is required',required=True)
+            args = p.parse_args()
+            rating = args['rating']
+            con = sqlite3.connect(db)
+            cur = con.cursor()
+            show_id = cur.execute('SELECT id FROM shows WHERE title = ?',[title,]).fetchone()
+            if show_id != None:
+                qeruy = 'UPDATE ratings SET rating = ? WHERE show_id = ?'
+                cur.execute(qeruy,[rating,show_id[0]])
+                con.commit()
+                return {'massage':f'Movie {title} rating {rating} Updated Susccfly'},201
+            else:
+                return {'massage': 'Moive Not Found'},404
 
+        except Exception as error:
+            return {'massage': f'DEBUGING: Something Went Wrong {error}'},500
 
+    def delete(slef,title):
+        title = decode(title)
+        p = reqparse.RequestParser()
+        try:
+            con = sqlite3.connect(db)
+            cur = con.cursor()
+            testingIftitleFound = cur.execute('SELECT id FROM shows WHERE title = ?',[title,]).fetchone()
+            print(testingIftitleFound)
+            if (testingIftitleFound != None):
+                show_id = cur.execute('SELECT id FROM shows WHERE title = ?',[title,]).fetchone()[0]
+                DelFROMShows = 'DELETE FROM shows WHERE title = ?'
+                DelFROMGenres = 'DELETE FROM genres WHERE show_id = ?'
+                DelFROMRatings = 'DELETE FROM ratings WHERE show_id = ?'
+                cur.execute(DelFROMShows,[title,])
+                cur.execute(DelFROMRatings,[show_id,])
+                cur.execute(DelFROMGenres,[show_id,])
+                con.commit()
+                return {'massage':f'Movie {title} DELETE Susccfly'},202
+            else:
+                return {'massage':f'Movie {title} DELETE Not Found'},404
+        except Exception as error:
+            return {'massage': f'Something Went Wrong {error}'},500
 
 class Notes(Resource):
     def get(self):
