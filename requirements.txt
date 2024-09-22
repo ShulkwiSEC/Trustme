@@ -9,12 +9,6 @@ Flask-Session==0.8.0
 
 # Networking
 requests==2.32.3
-urllib3==2.2.2
-PySocks==1.7.1
-
-# Utilities
-beautifulsoup4==4.12.3
-termcolor==2.4.0
 
 # WSGI Server
 gunicorn

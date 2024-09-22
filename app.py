@@ -302,6 +302,9 @@ def init_userdb(db):
         os.remove(userdb)
     try:
         query = """
+            DROP TABLE IF EXISTS users;
+            DROP TABLE IF EXISTS notes;
+
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY,
                 username TEXT NOT NULL UNIQUE,
