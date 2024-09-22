@@ -287,7 +287,7 @@ def logedin():
     return 'username' in session
 
 
-def init_userdb(db):
+def init_userdb(userdb):
     """
     Initializes the user database by creating necessary tables.
     If the database file already exists, it will be removed.
@@ -440,7 +440,7 @@ api.add_resource(Notes,'/api/v1/notes/')
 
 def main():
     if __name__ == '__main__':
-        if not init_userdb(db=userdb):
+        if not init_userdb(userdb):
             exit(1)
         app.run()
 main()
