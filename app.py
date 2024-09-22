@@ -372,6 +372,28 @@ def singin():
     else:
         return render_template('login.html')
 
+@app.route('/movie_information')
+def movies_info():
+    catgory = request.args.get('catgory', None)
+    con = sqlite3.connect(show_db)
+    con.row_factory = sqlite3.Row # Output Format
+    cur = con.cursor()
+    if not catgory:
+        query = "SELECT s.id, s.title, s.year, s.episodes, GROUP_CONCAT(g.genre, ', ') AS genres, r.rating, r.votes, GROUP_CONCAT(pw.name, ', ') AS writers FROM shows AS s JOIN genres AS g ON s.id = g.show_id  JOIN ratings AS r ON s.id = r.show_id  JOIN writers AS w ON s.id = w.show_id  JOIN people AS pw ON w.person_id = pw.id GROUP BY s.id, s.title, s.year, s.episodes, r.rating, r.votes LIMIT 50;"
+        movies = cur.execute(query).fetchall()
+    else:
+        catgory = decode(catgory)
+        query = "SELECT s.id, s.title, s.year, s.episodes, r.rating, r.votes, GROUP_CONCAT(g.genre, ', ') AS genres FROM shows AS s JOIN genres AS g ON s.id = g.show_id JOIN ratings AS r ON s.id = r.show_id WHERE g.genre = ? GROUP BY s.id, s.title, s.year, s.episodes, r.rating, r.votes LIMIT 50;"
+        movies = cur.execute(query,[catgory,]).fetchall()
+        con.commit()
+        con.close()
+    return render_template('movie_information.html',movies=movies)
+
+
+@app.route('/notes')
+def note():
+    return render_template('Notebook.html')
+
 @app.route('/logout')
 def logout():
     if 'username' in session:
