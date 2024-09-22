@@ -310,6 +310,8 @@ def init_userdb(db):
     except Exception as e:
         print(f"Error initializing user database: {e}")
         return False
+    finally:
+        con.commit()
 
 # Routes
 @app.route('/')
