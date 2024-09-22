@@ -402,6 +402,13 @@ def movies_info():
 def note():
     return render_template('Notebook.html')
 
+@app.route('/logout')
+def logout():
+    if session['username']:
+        session.clear()
+        return redirect('/')
+    else:
+        return '<h1>Please sign up and log in first.</h1>'
 
 # Comming Soon List
 # ENDLIST
