@@ -8,7 +8,7 @@ import os
 
 # Database configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-db = os.path.join(BASE_DIR, 'Datebases', 'shows.db')
+show_db = os.path.join(BASE_DIR, 'Datebases', 'shows.db')
 userdb = os.path.join(BASE_DIR, 'Datebases', 'users.db')
 
 # CONFIG
@@ -22,8 +22,8 @@ Session(app)
 class UserManager:
     @staticmethod
     def init_userdb():
-        # if os.path.exists(userdb):
-        #     os.remove(userdb)
+        if os.path.exists(userdb):
+            os.remove(userdb)
         try:
             query = """
                 DROP TABLE IF EXISTS users;
@@ -64,6 +64,8 @@ class UserManager:
             return False
         except Exception as error:
             print(error)
+            # DEBUGING
+            print(con.execute("SELECT * FROM sqlite_master").fetchall())
             return False
         finally:
             con.close()
@@ -91,7 +93,7 @@ class ShowManager:
     def get_movie(title):
         title = decode(title)
         try:
-            con = sqlite3.connect(db)
+            con = sqlite3.connect(show_db)
             cur = con.cursor()
             query = """
                 SELECT title, year, episodes, GROUP_CONCAT(genre, ', ') AS genres, rating, votes
@@ -111,7 +113,7 @@ class ShowManager:
     @staticmethod
     def add_movie(data):
         try:
-            con = sqlite3.connect(db)
+            con = sqlite3.connect(show_db)
             cur = con.cursor()
             InsertINtoSHOWS = 'INSERT INTO shows(title, year, episodes) VALUES(?, ?, ?);'
             cur.execute(InsertINtoSHOWS, (data['title'], data['year'], data['episodes']))
@@ -129,7 +131,7 @@ class ShowManager:
     def update_rating(title, rating):
         title = decode(title)
         try:
-            con = sqlite3.connect(db)
+            con = sqlite3.connect(show_db)
             cur = con.cursor()
             show_id = cur.execute('SELECT id FROM shows WHERE title = ?', [title]).fetchone()
             if show_id:
@@ -145,7 +147,7 @@ class ShowManager:
     def delete_movie(title):
         title = decode(title)
         try:
-            con = sqlite3.connect(db)
+            con = sqlite3.connect(show_db)
             cur = con.cursor()
             show_id = cur.execute('SELECT id FROM shows WHERE title = ?', [title]).fetchone()
             if show_id:
