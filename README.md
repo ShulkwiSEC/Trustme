@@ -8,7 +8,7 @@ This challenge is designed to help you understand the importance of trust, empha
 ## Note
 Feel free to collaborate with other players. If you're feeling lonely, just reach out to me, and I'll join you for some fun anytime!
 
-**Important:** Each player must upload their own flag into their account notes before starting the challenge.
+**Important:** `Each player must upload their own flag into their account notes before starting the challenge.`
 
 Just read the source code!
 
@@ -28,6 +28,6 @@ $ python3 -m pip install -r requirements.txt
 $ python3 app.py
 ```
 ### Online
-If you prefer an online deployment, you can access it at: ``` https://trustme-euzm.onrender.com ```
+If you prefer an online deployment, you can access it at: ``` https://trustme-b1pw.onrender.com ```
 
 Feel free to let me know if you need further adjustments and explaining !
