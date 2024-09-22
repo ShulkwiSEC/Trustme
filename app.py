@@ -362,6 +362,8 @@ def singup():
 @app.route('/singin',methods=['GET','POST'])
 def singin():
     if request.method == 'POST':
+        if session['username']:
+            session.clear()
         username = request.form.get('username')
         password = request.form.get('password')
         if username and password:
